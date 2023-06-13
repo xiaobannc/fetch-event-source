@@ -94,7 +94,8 @@ export function fetchEventSource(input: RequestInfo, {
         // if the incoming signal aborts, dispose resources and resolve:
         inputSignal?.addEventListener('abort', () => {
             dispose();
-            resolve(); // don't waste time constructing/logging errors
+//             resolve(); // don't waste time constructing/logging errors
+            reject({ aborted:true })
         });
 
         const fetch = inputFetch ?? window.fetch;
